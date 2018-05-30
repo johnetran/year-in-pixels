@@ -16,7 +16,7 @@ Nothing fancy, I wanted to keep things as simple as possible to be able to devel
 - Nebulas blockchain
 
 ## About the authors
-Original front-end created by Alejandro AR (@kinduff) and I enjoy making little tools that help out people.
+Original front-end created by Alejandro AR (@kinduff) who enjoys making little tools that help out people.
 Modified to work with Nebulas blockchain by John E. Tran (@johnetran)
 
 Thanks for passing by.
