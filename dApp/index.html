@@ -5,39 +5,20 @@
     <meta charset="utf-8">
     <title>Year in Pixels | Nebulas | dApp</title>
     <meta name="description" content="Track of your mood in the blockchain using pixels all year round.">
-    <!--
-    <meta name="image" content="https://cdn.glitch.com/e7b50d85-6473-4a0f-9575-f45e36b88b3e%2Fsocial.png">
-    <meta itemprop="name" content="Year in Pixels">
-    <meta itemprop="description" content="Small tool to keep track of your mood during all year using pixels.">
-    <meta itemprop="image" content="https://cdn.glitch.com/e7b50d85-6473-4a0f-9575-f45e36b88b3e%2Fsocial.png">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Year in Pixels">
-    <meta name="twitter:description" content="Small tool to keep track of your mood during all year using pixels.">
-    <meta name="twitter:creator" content="@kinduff">
-    <meta name="twitter:image:src" content="https://cdn.glitch.com/e7b50d85-6473-4a0f-9575-f45e36b88b3e%2Fsocial_tw.png">
-    <meta name="og:title" content="Year in Pixels">
-    <meta name="og:description" content="Small tool to keep track of your mood during all year using pixels.">
-    <meta name="og:image" content="https://cdn.glitch.com/e7b50d85-6473-4a0f-9575-f45e36b88b3e%2Fsocial.png">
-    <meta name="og:url" content="https://year-in-pixels.glitch.me/">
-    <meta name="og:site_name" content="Year in Pixels">
-    <meta name="og:type" content="website">
-    <link rel="me" href="https://twitter.com/kinduff">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="icon" type="image/png" href="https://cdn.glitch.com/e7b50d85-6473-4a0f-9575-f45e36b88b3e%2Ffavicon.png?1516486296808">
-    -->
+   
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://allyoucan.cloud/cdn/icofont/1.0.0beta/css/icofont.css">
     <link href="https://fonts.googleapis.com/css?family=Patrick+Hand|Sacramento|Coming+Soon" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.11.0/chartist.min.css" integrity="sha256-Te9+aTaL9j0U5PzLhtAHt+SXlgIT8KT9VkyOZn68hak=" crossorigin="anonymous">
-    <link rel="stylesheet" href="../public/reset.css">
-    <link rel="stylesheet" href="../public/style.css">
+    <link rel="stylesheet" href="public/reset.css">
+    <link rel="stylesheet" href="public/style.css">
 </head>
 <body>
     <div class="content">
         <div class="container">
             <div class="column">
                 <div class="header">
-                    <img src="../public/nebulasx60.png" alt="Nebulas">
+                    <img src="public/nebulasx60.png" alt="Nebulas">
                     <div class="rocks">Rocks</div>
                     <h1>Year in Pixels</h1>
                 </div>
@@ -83,7 +64,21 @@
             <div class="column">
                 <div class="interface">
                     <div class="mood-form">
-                        <h2>Hello there,<br />how are you feeling today?</h2><form id="submitMood" action=""><div><input type="radio" id="none" name="dayMood" value="0" class="mood-0"><label for="none"></label></div><div><input type="radio" id="tough" name="dayMood" value="1" class="mood-1"><label for="tough"></label></div><div><input type="radio" id="difficult" name="dayMood" value="2" class="mood-2"><label for="difficult"></label></div><div><input type="radio" id="average" name="dayMood" value="3" class="mood-3"><label for="average"></label></div><div><input type="radio" id="great" name="dayMood" value="4" class="mood-4"><label for="great"></label></div><div><input type="radio" id="amazing" name="dayMood" value="5" class="mood-5"><label for="amazing"></label></div></form><div id="message">
+                        <h2>Hello there,<br />how are you feeling today?</h2>
+                        <form id="submitMood" action="">
+                            <div>
+                                <input type="radio" id="none" name="dayMood" value="0" class="mood-0">
+                                <label for="none"></label>
+                            </div>
+                            <div>
+                                <input type="radio" id="tough" name="dayMood" value="1" class="mood-1">
+                                <label for="tough"></label>
+                            </div>  
+                            <div>
+                                <input type="radio" id="difficult" name="dayMood" value="2" class="mood-2">
+                                <label for="difficult"></label>
+                            </div>
+                            <div><input type="radio" id="average" name="dayMood" value="3" class="mood-3"><label for="average"></label></div><div><input type="radio" id="great" name="dayMood" value="4" class="mood-4"><label for="great"></label></div><div><input type="radio" id="amazing" name="dayMood" value="5" class="mood-5"><label for="amazing"></label></div></form><div id="message">
                             <p>
                                 Your day has been
                                 <u>amazing</u>.
@@ -107,6 +102,7 @@
                 </div>
             </div>
 
+            <div id="contact"><a href="mailto:yearinpixels@nebulas.rocks">yearinpixels@nebulas.rocks</a></div>
         </div>
         <div id="menu">
                 <div id="importDialog" class="dialog">
@@ -128,9 +124,9 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.0/jquery.js" integrity="sha256-TFWSuDJt6kS+huV+vVlyV1jM3dwGdeNWqezhTxXB/X8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.11.0/chartist.js" integrity="sha256-ecMZjeiA/pSkp5neBcgNy+5LhWaw5+CZTAldMlhfxnk=" crossorigin="anonymous"></script>
-	<script type="text/javascript" src="../public/nebulas.js"></script>
- 	<script type="text/javascript" src="../public/nebPay.js"></script>
-    <script type="text/javascript" src="../public/blockchain.js"></script>
-    <script type="text/javascript" src="../public/dApp.js"></script>
-    <script type="text/javascript" src="../public/script.js"></script>
+	<script type="text/javascript" src="public/nebulas.js"></script>
+ 	<script type="text/javascript" src="public/nebPay.js"></script>
+    <script type="text/javascript" src="public/blockchain.js"></script>
+    <script type="text/javascript" src="public/dApp.js"></script>
+    <script type="text/javascript" src="public/script.js"></script>
 </html>

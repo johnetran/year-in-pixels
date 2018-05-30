@@ -11,10 +11,23 @@
   var $moodItems = $moodGrid.find('a');
   var $dayMood = $("input[name=dayMood]");
   var activeMoodDay;
+  var year = getYear();
 
-  function getYear() {
+  function getYear() {    
     var now = new Date();
-    return now.getFullYear();
+    var year = now.getFullYear();
+
+    var urlVars = getUrlVars();
+    if (urlVars["year"]){
+      var parts = urlVars["year"].split("-");
+      if (parts.length > 0){
+        if (!isNaN(parts[0])){
+          year = parseInt(parts[0]);
+        }
+      }
+    }
+
+    return year;
   }
   
   function getTodayDayNumber() {
@@ -53,7 +66,7 @@
   
   function updateMoodCalendar() {
     var moods = getMoodCalendarString();
-    blockchain.setMoods(getYear(), moods, handleSetMoods);
+    blockchain.setMoods(year, moods, handleSetMoods);
 
   }
   function handleSetMoods(resp){
@@ -62,8 +75,20 @@
         setStatus("Unable to save to blockchain: " + resp, "red")
         return;
       }
+
+      setStatus("Saving to blockchain...", "gold");
+      blockchain.startRefreshTimeout(resp, {successCB: setMoodsSuccess, errorCB: setMoodsError, progressCB: setMoodsProgress});
     }
     console.log(resp);
+  }
+  function setMoodsSuccess(resp){
+    setStatus("Successfully saved to blockchain", "blue");
+  }
+  function setMoodsError(userObj, err){
+    setStatus("Error saving to blockchain: " + err, "red");
+  }
+  function setMoodsProgress(obj, userObj, txRefreshCount){
+    setStatus("Saving to blockchain ("+txRefreshCount+")...", "gold");
   }
 
   function loadMoodCalendar(moodCalendar) {
@@ -71,17 +96,24 @@
       setMoods(moodCalendar);
     }
     else{
-      blockchain.getMoods(getYear(), handleGetMoods);
+      blockchain.getMoods(year, handleGetMoods);
     }
   }
   function handleGetMoods(resp){
     if (resp){
-      if (resp.result){
-        setMoods(resp.result.split(''));
+      if (resp.result && resp.result != 'null'){
+        var moods = JSON.parse(resp.result);
+        setMoods(moods.split(''));
+        setActiveDayMoodRadio();
+        createAvgChart();
       }
       else if (resp.execute_err){
         if (resp.execute_err == "contract check failed"){
           setStatus("Wrong Nebulas Network - In your WebExtensionWallet, please select the " + blockchain.nebNetwork, "red")
+        }
+        else{
+          setStatus("Error: " + resp.execute_err, "red")
+
         }
       }
   
@@ -113,20 +145,7 @@
       $("#status").css({"color": textColor});
     }
   }  
-  function setQuoteOfTheDay() {
-    $.ajax({
-      url : "https://quotes.rest/qod",
-      dataType: "json",
-      type: "GET",
-      success: function(data) {
-        var content = data["contents"]["quotes"][0];
-        var quote = content["quote"];
-        var author = content["author"];
-        $("#quoteOfTheDay").html("<p>\""+quote+"\"</p><p class='author'>—"+author+"</p>");
-      }
-    });
-  }
-  
+
   function getMonthMoodAvgArr() {
     var moods = $moodGrid.find('.item.month').map(function() {
       return $(this).find("a")
@@ -221,8 +240,6 @@ function initDayMood(){
     
   });
   
-
-
   $("#footer a").on("click", function(e) {
     e.preventDefault();
     var action = $(this).attr('data-menu');
@@ -242,19 +259,19 @@ function initDayMood(){
       var dialog = confirm("Careful, this will clear all the current data. Are you sure?");
       if (dialog) {
         loadMoodCalendar(moodCalendar);
-        updateMoodCalendar();
         createAvgChart();
         initDayMood();
-        
+        updateMoodCalendar();
+
         //$dayMood.trigger('change');
         
         $("#importMoodText").val('');
         $("#importDialog").fadeOut('fast', function() {
-          alert('The import was successful!');
+          //alert('The import was successful!');
         });
       }
     } else {
-      alert("We're sorry.\nThe data is not valid. Please try again.");
+      setStatus("We're sorry.\nThe data is not valid. Please try again.", "red");
     }
   });
   
@@ -280,7 +297,6 @@ function initDayMood(){
     clearAllData: function() {
       var moodArr = Array.apply(null, Array(365)).map(Number.prototype.valueOf,0);
       loadMoodCalendar(moodArr.join(''));
-      updateMoodCalendar();
       createAvgChart();
       setActiveDayMoodRadio();
       updateMoodCalendar();
@@ -311,6 +327,5 @@ function initDayMood(){
   loadMoodCalendar();
   selectTodayMood();
   createPixelsForHeader();
-  setQuoteOfTheDay();
   createAvgChart();
 })();

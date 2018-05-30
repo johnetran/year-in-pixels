@@ -2,11 +2,11 @@
 
 const TESTNET = "Testnet";
 const MAINNET = "Mainnet";
-//const DEFAULT_NEBNET = MAINNET;
-const DEFAULT_NEBNET = TESTNET;
+const DEFAULT_NEBNET = MAINNET;
+//const DEFAULT_NEBNET = TESTNET;
 
 const CONTRACTADDR_TESTNET = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
-const CONTRACTADDR_MAINNET = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+const CONTRACTADDR_MAINNET = "n1wfkF3K8d3BmCRwTcHjBKETrhMuFmXUJUa";
 
 const RPC_TESTNET = "https://testnet.nebulas.io";
 const RPC_MAINNET = "https://mainnet.nebulas.io";
@@ -27,6 +27,7 @@ var blockchain = function () {
 		this.callbackUrl = DEFAULT_NEBNET == TESTNET ? NebPay.config.testnetUrl : NebPay.config.mainnetUrl ;
 		this.contractAddr = DEFAULT_NEBNET == TESTNET ? CONTRACTADDR_TESTNET : CONTRACTADDR_MAINNET;
 		this.neb.setRequest(new nebulas.HttpRequest(DEFAULT_NEBNET == TESTNET ? RPC_TESTNET : RPC_MAINNET));
+		this.txRefreshCount = 0;
 		console.log(DEFAULT_NEBNET + " selected: " + this.callbackUrl)	
 	}
 };
@@ -159,9 +160,58 @@ blockchain.prototype = {
 
 	webExtensionInstalled: function(){
 		return !(typeof(webExtensionWallet) === "undefined");
+	},
+
+	startRefreshTimeout: function(resp, userObj){
+		blockchain.txRefreshCount = 0;
+		blockchain.refreshTimeout(userObj);
+	},
+	refreshTimeout: function(userObj){
+		blockchain.txRefreshCount++;
+		setTimeout(function(){ 
+			blockchain.refresh(userObj, blockchain.refreshStatusSuccess, blockchain.refreshStatusError);
+		}, 15000);
+	},
+	 refreshStatusSuccess: function(userObj, resp){
+		if (resp){
+			var obj = JSON.parse(resp);
+			if (obj && obj.msg){
+				if (obj.msg == "success"){
+	
+					if (userObj){
+						if (userObj.successCB){
+							userObj.successCB(resp);
+						}
+					}
+				}
+				else {
+					if (userObj && userObj.errorCB){
+						errorCB(obj, userObj, blockchain.txRefreshCount);
+					}
+					blockchain.refreshTimeout(userObj);
+				}	
+			}
+			else{
+				if (userObj && userObj.progressCB){
+					userObj.progressCB(obj, userObj, blockchain.txRefreshCount);
+				}
+				blockchain.refreshTimeout(userObj);
+			}
+		}
+		else {
+			if (userObj && userObj.progressCB){
+				userObj.progressCB(obj, userObj, blockchain.txRefreshCount);
+			}
+			blockchain.refreshTimeout(userObj);
+		}
+		console.log(resp);
+	},
+	refreshStatusError: function(userObj, err){
+		if (userObj && userObj.errorCB){
+			userObj.errorCB(userObj, err);
+		}
+		console.log(err);
 	}
-
-
 };
 
 var blockchain = new blockchain();
