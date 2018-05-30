@@ -6,18 +6,17 @@ This tool was made to keep track of your mood during all year using pixels. You 
 
 The idea for this tool is not new at all, but I've never seen this format online before. I hope you enjoy it.
 
-You can import/export your calendar too, in case you're using different browsers or computers.
-
 ## Tecnology
 Nothing fancy, I wanted to keep things as simple as possible to be able to develop this during a Friday.
 
-- Node.js
 - jQuery
 - Chartist.js
 - IcoFont
 - Google Fonts
+- Nebulas blockchain
 
-## About the author
-My name is Alejandro AR (@kinduff) and I enjoy making little tools that help out people.
+## About the authors
+Original front-end created by Alejandro AR (@kinduff) and I enjoy making little tools that help out people.
+Modified to work with Nebulas blockchain by John E. Tran (@johnetran)
 
 Thanks for passing by.

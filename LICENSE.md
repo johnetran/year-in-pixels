@@ -1,6 +1,7 @@
 MIT License
 
-Copyright (c) 2018 Alejandro AR
+Original Work Copyright (c) 2018 Alejandro AR
+Modified Work Copyright (c) 2018 John E. Tran
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

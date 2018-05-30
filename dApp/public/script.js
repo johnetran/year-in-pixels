@@ -1,9 +1,22 @@
 (function(){
+
+
+  if (!blockchain.webExtensionInstalled()){
+    setStatus(
+      "The WebExtentionWall is not installed. <br/><br/>You can still interact with this dApp but nothing will be saved to the blockchain. <br/><br/>The WebExtentionWallet works with the Google Chrome desktop browser and can be downloaded here: <a href='https://github.com/ChengOrangeJu/WebExtensionWallet' target='_blank'>https://github.com/ChengOrangeJu/WebExtensionWallet</a>"
+      , "red")
+  }
+  
   var $moodGrid = $("#moodGrid");
   var $moodItems = $moodGrid.find('a');
   var $dayMood = $("input[name=dayMood]");
   var activeMoodDay;
 
+  function getYear() {
+    var now = new Date();
+    return now.getFullYear();
+  }
+  
   function getTodayDayNumber() {
     var now = new Date();
     var start = new Date(now.getFullYear(), 0, 0);
@@ -23,7 +36,8 @@
   function setActiveDayMoodRadio() {
     var value = $(activeMoodDay).attr("data-mood");
     $("input[name=dayMood][value=" + value + "]").prop('checked', true);
-    $dayMood.trigger('change');
+    initDayMood();
+    //$dayMood.trigger('change');
   }
   
   function setMoods(arrayOfMoods) {
@@ -39,17 +53,42 @@
   
   function updateMoodCalendar() {
     var moods = getMoodCalendarString();
-    localStorage.removeItem('moodCalendar');
-    localStorage.setItem('moodCalendar', moods);
+    blockchain.setMoods(getYear(), moods, handleSetMoods);
+
+  }
+  function handleSetMoods(resp){
+    if (resp){
+      if (typeof resp == "string" && resp.startsWith("Error")){
+        setStatus("Unable to save to blockchain: " + resp, "red")
+        return;
+      }
+    }
+    console.log(resp);
   }
 
   function loadMoodCalendar(moodCalendar) {
-    var moodArr = moodCalendar || localStorage.getItem('moodCalendar');
-    if (moodArr) {
-      setMoods(moodArr.split(''));
+    if (moodCalendar){
+      setMoods(moodCalendar);
+    }
+    else{
+      blockchain.getMoods(getYear(), handleGetMoods);
     }
   }
+  function handleGetMoods(resp){
+    if (resp){
+      if (resp.result){
+        setMoods(resp.result.split(''));
+      }
+      else if (resp.execute_err){
+        if (resp.execute_err == "contract check failed"){
+          setStatus("Wrong Nebulas Network - In your WebExtensionWallet, please select the " + blockchain.nebNetwork, "red")
+        }
+      }
   
+    }
+    console.log(resp);
+  }
+
   function createPixelsForHeader() {
     var pixelsWidth = $("#pixels").width();
     var pixelsHeight = $("#pixels").height();
@@ -68,6 +107,12 @@
     }
   }
   
+  function setStatus(message, textColor){
+    $("#status").html("<p>"+message+"</p>");
+    if (textColor){
+      $("#status").css({"color": textColor});
+    }
+  }  
   function setQuoteOfTheDay() {
     $.ajax({
       url : "https://quotes.rest/qod",
@@ -143,29 +188,41 @@
     new Chartist.Line('.ct-chart', data, options);
   }
 
+function initDayMood(){
+
+  var moodValue = $('input[name=dayMood]:checked').val();
+  $(activeMoodDay).attr("data-mood", moodValue);
+  
+  createAvgChart();
+  if (moodOptions[moodValue] != 'none') {
+    var message = "Your day was <u>" + moodOptions[moodValue] + "</u>."
+    $("#message").html(message);
+  } else {
+    var message = "You have not set a mood today."
+    $("#message").html(message);
+  }
+
+}
+
   $moodItems.on("click", function(e) {
     e.preventDefault();
     $moodItems.removeClass("active");
     $(this).addClass("active");
     activeMoodDay = this;
     setActiveDayMoodRadio();
+    //updateMoodCalendar();
   });
 
   $dayMood.on("change", function(e) {
     e.preventDefault();
-    var moodValue = $('input[name=dayMood]:checked').val();
-    $(activeMoodDay).attr("data-mood", moodValue);
+
+    initDayMood()
     updateMoodCalendar();
-    createAvgChart();
-    if (moodOptions[moodValue] != 'none') {
-      var message = "Your day was <u>" + moodOptions[moodValue] + "</u>."
-      $("#message").html(message);
-    } else {
-      var message = "You have not set a mood today."
-      $("#message").html(message);
-    }
+    
   });
   
+
+
   $("#footer a").on("click", function(e) {
     e.preventDefault();
     var action = $(this).attr('data-menu');
@@ -187,7 +244,10 @@
         loadMoodCalendar(moodCalendar);
         updateMoodCalendar();
         createAvgChart();
-        $dayMood.trigger('change');
+        initDayMood();
+        
+        //$dayMood.trigger('change');
+        
         $("#importMoodText").val('');
         $("#importDialog").fadeOut('fast', function() {
           alert('The import was successful!');
@@ -206,6 +266,7 @@
       $("#exportDialog").fadeIn('fast');
       $("#exportMoodText").val(getMoodCalendarString());
     },
+    /*
     fillDemoData: function() {
       var moodArr = Array.apply(null, Array(365)).map(function() {
         return Math.floor(Math.random()*5+1);
@@ -215,12 +276,14 @@
       createAvgChart();
       setActiveDayMoodRadio();
     },
+    */
     clearAllData: function() {
       var moodArr = Array.apply(null, Array(365)).map(Number.prototype.valueOf,0);
       loadMoodCalendar(moodArr.join(''));
       updateMoodCalendar();
       createAvgChart();
       setActiveDayMoodRadio();
+      updateMoodCalendar();
     },
     howAboutDialog: function() {
       $("#aboutDialog").fadeIn('fast');
@@ -236,20 +299,11 @@
     case "export":
       menu.showExportDialog();
       break;
-    case "demo":
-      var dialog = confirm("Careful, this will clear all the current data. Are you sure?");
-      if (dialog) {
-        menu.fillDemoData();
-      }
-      break;
     case "clear":
       var dialog = confirm("Careful, this will clear all the current data. Are you sure?");
       if (dialog) {
         menu.clearAllData();
       }
-      break;
-    case "about":
-      menu.howAboutDialog();
       break;
     }
   }
