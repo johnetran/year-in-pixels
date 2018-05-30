@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Year in Pixels | Nebulas | dApp</title>
+    <meta name="description" content="Track of your mood in the blockchain using pixels all year round.">
+   
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://allyoucan.cloud/cdn/icofont/1.0.0beta/css/icofont.css">
+    <link href="https://fonts.googleapis.com/css?family=Patrick+Hand|Sacramento|Coming+Soon" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.11.0/chartist.min.css" integrity="sha256-Te9+aTaL9j0U5PzLhtAHt+SXlgIT8KT9VkyOZn68hak=" crossorigin="anonymous">
+    <link rel="stylesheet" href="public/reset.css">
+    <link rel="stylesheet" href="public/style.css">
+</head>
+<body>
+    <div class="content">
+        <div class="container">
+            <div class="column">
+                <div class="header">
+                    <img src="public/nebulasx60.png" alt="Nebulas">
+                    <div class="rocks">Rocks</div>
+                    <h1>Year in Pixels</h1>
+                </div>
+            </div>
+            <div class="column"><div id="pixels"></div></div>
+        </div>
+        <div class="container">
+            <div class="column">
+                <div id="moodGrid" class="grid">
+                    <div class="item">
+                        <span></span>
+                        <div class="days">
+                            <span class="day">1</span><span class="day">2</span><span class="day">3</span><span class="day">4</span><span class="day">5</span><span class="day">6</span><span class="day">7</span><span class="day">8</span><span class="day">9</span><span class="day">10</span><span class="day">11</span><span class="day">12</span><span class="day">13</span><span class="day">14</span><span class="day">15</span><span class="day">16</span><span class="day">17</span><span class="day">18</span><span class="day">19</span><span class="day">20</span><span class="day">21</span><span class="day">22</span><span class="day">23</span><span class="day">24</span><span class="day">25</span><span class="day">26</span><span class="day">27</span><span class="day">28</span><span class="day">29</span><span class="day">30</span><span class="day">31</span>
+                        </div>
+                    </div>
+                    <div data-month="Jan" class="item month">
+                        <span>J</span>
+                        <a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a>
+                        <a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a>
+                        <a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a>
+                        <a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a>
+                        <a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a>
+                        <a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a>
+                        <a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a>
+                        <a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a>
+                        <a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a>
+                        <a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a>
+                        <a href="#" data-mood="0"></a>
+                    </div>
+                    <div data-month="Feb" class="item month"><span>F</span><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a></div>
+                    <div data-month="Mar" class="item month"><span>M</span><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a></div>
+                    <div data-month="Apr" class="item month"><span>A</span><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a></div>
+                    <div data-month="May" class="item month"><span>M</span><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a></div>
+                    <div data-month="Jun" class="item month"><span>J</span><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a></div>
+                    <div data-month="Jul" class="item month"><span>J</span><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a></div>
+                    <div data-month="Aug" class="item month"><span>A</span><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a></div>
+                    <div data-month="Sep" class="item month"><span>S</span><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a></div>
+                    <div data-month="Oct" class="item month"><span>O</span><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a></div>
+                    <div data-month="Nov" class="item month"><span>N</span><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a></div>
+                    <div data-month="Dec" class="item month"><span>D</span><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a><a href="#" data-mood="0"></a></div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="interface">
+                    <div class="mood-form">
+                        <h2>Hello there,<br />how are you feeling today?</h2>
+                        <form id="submitMood" action="">
+                            <div>
+                                <input type="radio" id="none" name="dayMood" value="0" class="mood-0">
+                                <label for="none"></label>
+                            </div>
+                            <div>
+                                <input type="radio" id="tough" name="dayMood" value="1" class="mood-1">
+                                <label for="tough"></label>
+                            </div>  
+                            <div>
+                                <input type="radio" id="difficult" name="dayMood" value="2" class="mood-2">
+                                <label for="difficult"></label>
+                            </div>
+                            <div><input type="radio" id="average" name="dayMood" value="3" class="mood-3"><label for="average"></label></div><div><input type="radio" id="great" name="dayMood" value="4" class="mood-4"><label for="great"></label></div><div><input type="radio" id="amazing" name="dayMood" value="5" class="mood-5"><label for="amazing"></label></div></form><div id="message">
+                            <p>
+                                Your day has been
+                                <u>amazing</u>.
+                            </p>
+                        </div>
+                    </div><div id="chart"><div class="ct-chart"></div></div>
+                    
+                    <!--
+                    <div id="quoteOfTheDay"><p>Loading...</p></div>
+                    -->
+                    <div id="status"></div>
+                    <div id="footer">
+                        <ul class="menu">
+                            <li><a href="#" data-menu="import">Import</a></li>
+                            <li><a href="#" data-menu="export">Export</a></li>
+                            <!--<li><a href="#" data-menu="demo">Demo data</a></li>-->
+                            <li><a href="#" data-menu="clear">Clear data</a></li>
+                            <!--<li><a href="#" data-menu="about">About</a></li>-->                       
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="contact"><a href="mailto:yearinpixels@nebulas.rocks">yearinpixels@nebulas.rocks</a></div>
+        </div>
+        <div id="menu">
+                <div id="importDialog" class="dialog">
+                    <a href="#" class="close">X</a>
+                    <h3>Import a mood calendar</h3>
+                    <p>Paste the code copied from the export tool and click the import button.</p>
+                    <textarea id="importMoodText"></textarea>
+                    <button id="importMoodBtn">Import</button>
+                </div>
+                <div id="exportDialog" class="dialog">
+                    <a href="#" class="close">X</a>
+                    <h3>Export a mood calendar</h3>
+                    <p>Copy the following text and use the import tool to import it.</p>
+                    <textarea id="exportMoodText" onclick="this.focus();this.select()" readonly="readonly"></textarea>
+                </div>
+        </div>
+        <script type="text/javascript">var moodOptions = { "0": "none", "1": "tough", "2": "difficult", "3": "average", "4": "great", "5": "amazing" }</script>
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.0/jquery.js" integrity="sha256-TFWSuDJt6kS+huV+vVlyV1jM3dwGdeNWqezhTxXB/X8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.11.0/chartist.js" integrity="sha256-ecMZjeiA/pSkp5neBcgNy+5LhWaw5+CZTAldMlhfxnk=" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="public/nebulas.js"></script>
+ 	<script type="text/javascript" src="public/nebPay.js"></script>
+    <script type="text/javascript" src="public/blockchain.js"></script>
+    <script type="text/javascript" src="public/dApp.js"></script>
+    <script type="text/javascript" src="public/script.js"></script>
+</html>
